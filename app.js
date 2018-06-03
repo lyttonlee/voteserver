@@ -22,8 +22,7 @@ connection.on('open', () => {
 
 
 // routes
-const route = require('./routes/route')
-const adminroute = require('./routes/adminroute')
+const apiRoute = require('./routes/route')
 // app
 const app = express()
 
@@ -37,10 +36,7 @@ app.use(express.static(__dirname + '/public/'))
 app.use(bodyParser.json())
 
 // routes
-const client = '/api'
-const admin = '/api/admin'
-app.use(client, route)
-app.use(admin, adminroute)
+app.use('/api', apiRoute)
 
 
 // catch 404 err and then to err handler
@@ -61,7 +57,7 @@ app.use((err, req, res, next) => {
   console.error(err)
 })
 // listen port
-const port = app.get('port') || 3080
+const port = app.get('port') || 8088
 app.listen(port, () => {
   // console.log(err)
   console.log('your server are listening on port:' + port)
